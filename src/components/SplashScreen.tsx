@@ -16,13 +16,34 @@ const SplashScreen = ({ finishloading }: SplashScreenProps) => {
       onComplete: () => finishloading(),
     });
 
-    loader.add("#logo", {
-      delay: 0,
-      scale: 1,
-      rotate: "360deg",
-      duration: 1500,
-      easing: "easeInOutExpo",
-    });
+    loader
+      .add("#logo", {
+        scale: 0,
+        opacity: 0,
+        duration: 0,
+      })
+      .add("#logo", {
+        scale: 1.4,
+        opacity: 1,
+        duration: 700,
+        easing: "easeOutBack",
+      })
+      .add("#logo", {
+        scale: 1,
+        rotate: "360deg",
+        duration: 1000,
+        easing: "easeInOutExpo",
+      })
+      .add("#logo", {
+        scale: 1.15,
+        duration: 400,
+        easing: "easeOutQuad",
+      })
+      .add("#logo", {
+        scale: 1,
+        duration: 300,
+        easing: "easeInOutQuad",
+      });
   };
   useEffect(() => {
     const timeout = setTimeout(() => setIsMounted(true), 10);
@@ -31,13 +52,13 @@ const SplashScreen = ({ finishloading }: SplashScreenProps) => {
   }, []);
 
   return (
-    <div className="flex h-screen items-center justify-center">
+    <div className="flex h-screen items-center justify-center bg-[#800020]">
       <Image
         id="logo"
         src="/vercel.svg"
         alt="logo image"
-        width={60}
-        height={60}
+        width={200}
+        height={200}
       />
     </div>
   );
