@@ -1,0 +1,1 @@
+// Collects customer's booking information
