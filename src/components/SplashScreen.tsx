@@ -1,6 +1,7 @@
+
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { createTimeline } from "animejs";
 import Image from "next/image";
 
@@ -9,9 +10,7 @@ interface SplashScreenProps {
 }
 
 const SplashScreen = ({ finishloading }: SplashScreenProps) => {
-  const [isMounted, setIsMounted] = useState(false);
-
-  const startAnimation = () => {
+  useEffect(() => {
     const loader = createTimeline({
       onComplete: () => finishloading(),
     });
@@ -44,12 +43,11 @@ const SplashScreen = ({ finishloading }: SplashScreenProps) => {
         duration: 300,
         easing: "easeInOutQuad",
       });
-  };
-  useEffect(() => {
-    const timeout = setTimeout(() => setIsMounted(true), 10);
-    startAnimation();
-    return () => clearTimeout(timeout);
-  }, []);
+
+    return () => {
+      loader.pause();
+    };
+  }, [finishloading]);
 
   return (
     <div className="flex h-screen items-center justify-center bg-[#800020]">
@@ -65,3 +63,4 @@ const SplashScreen = ({ finishloading }: SplashScreenProps) => {
 };
 
 export default SplashScreen;
+
