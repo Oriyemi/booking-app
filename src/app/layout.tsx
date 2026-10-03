@@ -1,6 +1,10 @@
+"use client"
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import SplashScreen from "@/components/SplashScreen";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,12 +22,34 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
+  const pathname = usePathname()
+  const isHome = pathname === "/";
+  const [isLoading, setIsLoading] = useState(isHome);
+  useEffect(() => {
+    if (isLoading) return
+  }, [isLoading]);
+
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <head>
+        <body className="bg-full bg-red-900 bg-fixed bg-no-repeat">
+          {/* we are saying that if ishome and isloading is true show splashscreen but if it not true just the page content  */}
+          {isLoading && isHome ? (
+            <SplashScreen finishloading={()=> setIsLoading(false)} />
+          ) : (
+              
+          <>
+            {/* {/* <Navbar /> */}
+            {children}
+            {/* <Footer/> */} 
+          </>
+          )}
+        </body>
+      </head>
+     
     </html>
   );
 }
