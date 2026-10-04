@@ -18,9 +18,9 @@ export default function Button({
   children,
 }: ButtonProps) {
   const styles =
-    variant === "primary"
-      ? "bg-blue-600 text-white hover:bg-blue-700"
-      : "border border-gray-200 bg-white text-gray-900 hover:bg-gray-50";
+  variant === "primary"
+    ? "bg-brand text-white hover:bg-brand-dark"
+    : "border border-brand bg-white text-brand hover:bg-tint";
 
   return (
     <Link

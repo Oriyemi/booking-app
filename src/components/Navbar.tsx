@@ -1,30 +1,28 @@
-// Used across the website
-//     Home
-//     Services
-//     Login
-//     Dashboard
-// components/Navbar.tsx
 import Link from "next/link";
 import Image from "next/image";
 
 export default function Navbar() {
   return (
-    <header className="flex items-center justify-between border-b border-gray-200 bg-blue-600 px-6 py-4">
-      <Link href="/" className="text-xl font-bold">
-        <Image
-          id="logo"
-          src="/vercel.svg"
-          alt="logo image"
-          width={40}
-          height={40}
-        />
-      </Link>
-      <Link
-        href="/services"
-        className="rounded-full bg-white px-5 py-2 font-medium text-blue-600 transition-colors hover:bg-blue-50"
-      >
-        Explore
-      </Link>
+    <header className="sticky top-0 z-20 border-b border-brand/10 bg-cream/70 backdrop-blur-md">
+      <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-1">
+        <Link href="/" className="flex items-center">
+          <Image
+            id="logo"
+            src="/oja-logo.png"
+            alt="Ojà logo"
+            width={80}
+            height={80}
+            className="h-auto w-30 object-contain"
+            priority
+          />
+        </Link>
+        <Link
+          href="/services"
+          className="rounded-full bg-brand px-4 py-2 text-sm font-light text-white shadow-sm transition hover:bg-brand-dark"
+        >
+          Explore
+        </Link>
+      </div>
     </header>
   );
 }

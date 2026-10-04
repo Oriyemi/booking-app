@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect } from "react";
@@ -16,32 +15,27 @@ const SplashScreen = ({ finishloading }: SplashScreenProps) => {
     });
 
     loader
+      .set("#logo", { scale: 0, opacity: 0 })
       .add("#logo", {
-        scale: 0,
-        opacity: 0,
-        duration: 0,
-      })
-      .add("#logo", {
-        scale: 1.4,
+        scale: 1.2,
         opacity: 1,
         duration: 700,
-        easing: "easeOutBack",
+        ease: "outBack",
       })
       .add("#logo", {
         scale: 1,
-        rotate: "360deg",
-        duration: 1000,
-        easing: "easeInOutExpo",
+        duration: 400,
+        ease: "inOutQuad",
       })
       .add("#logo", {
-        scale: 1.15,
+        scale: 1.1,
         duration: 400,
-        easing: "easeOutQuad",
+        ease: "outQuad",
       })
       .add("#logo", {
         scale: 1,
         duration: 300,
-        easing: "easeInOutQuad",
+        ease: "inOutQuad",
       });
 
     return () => {
@@ -50,17 +44,18 @@ const SplashScreen = ({ finishloading }: SplashScreenProps) => {
   }, [finishloading]);
 
   return (
-    <div className="flex h-screen items-center justify-center bg-[#800020]">
+    <div className="flex h-screen items-center justify-center bg-[#800020].">
       <Image
         id="logo"
-        src="/vercel.svg"
-        alt="logo image"
+        src="/oja-logo.png"
+        alt="logo"
         width={200}
         height={200}
+        className="h-auto w-50 object-contain"
+        priority
       />
     </div>
   );
 };
 
 export default SplashScreen;
-
