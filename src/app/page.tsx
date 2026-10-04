@@ -28,7 +28,7 @@ const features = [
   {
     icon: CalendarDays,
     title: "Never double-booked",
-    description: "Clients only see times that are really free.",
+    description: "Clients  only see times that are really free.",
   },
 ];
 
