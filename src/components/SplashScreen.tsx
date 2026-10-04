@@ -45,7 +45,7 @@ const SplashScreen = ({ finishloading }: SplashScreenProps) => {
       });
 
     return () => {
-      loader.pause();
+      loader.pause(); // "If this component is removed before the animation finishes, stop the animation."
     };
   }, [finishloading]);
 

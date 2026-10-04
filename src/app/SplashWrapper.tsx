@@ -9,7 +9,7 @@ export default function SplashWrapper({
 }: {
   children: React.ReactNode;
 }) {
-  const pathname = usePathname();
+  const pathname = usePathname(); // This gets the URL path the user is currently visiting.
   const isHome = pathname === "/";
   const [isLoading, setIsLoading] = useState(isHome);
 
