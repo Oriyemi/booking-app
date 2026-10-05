@@ -35,7 +35,7 @@ const features = [
 export default function Home() {
   return (
     <div className="relative min-h-screen overflow-hidden bg-cream">
-      {/* soft background glow */}
+      
       <div className="pointer-events-none absolute -top-32 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-brand-light/20 blur-3xl" />
       <div className="pointer-events-none absolute top-1/2 -right-24 h-72 w-72 rounded-full bg-accent/20 blur-3xl" />
 
@@ -66,7 +66,7 @@ export default function Home() {
         <div className="mt-10 w-full space-y-4 text-left">
           {features.map((f) => (
             <FeatureCard key={f.title} {...f} />
-          ))}
+          ))} {/* key={f.title} helps React identify each item, while {...f} passes all the properties inside f to FeatureCard. */}
         </div>
 
         <div className="mt-10 w-full space-y-3">

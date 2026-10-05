@@ -1,4 +1,3 @@
-// components/FeatureCard.tsx
 import type { LucideIcon } from "lucide-react";
 
 type FeatureCardProps = {
