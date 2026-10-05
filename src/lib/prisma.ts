@@ -1,4 +1,5 @@
-import { PrismaClient } from '@prisma/client';
+// lib/prisma.ts
+import { PrismaClient } from './generated/client';
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
 
