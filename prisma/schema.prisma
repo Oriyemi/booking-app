@@ -1,11 +1,10 @@
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 generator client {
-  provider = "prisma-client-js"
-  provider = "../generated/prisma"
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
 }
 
 enum Role {
@@ -22,15 +21,14 @@ enum BookingStatus {
 }
 
 model User {
-  id        String   @id // Clerk User ID (e.g., "user_2...")
+  id        String   @id
   email     String   @unique
   name      String?
   role      Role     @default(CUSTOMER)
   createdAt DateTime @default(now())
 
-  // Relations
-  services  Service[] // Services created (if Provider)
-  bookings  Booking[] // Bookings made (if Customer)
+  services Service[]
+  bookings Booking[]
 }
 
 model Service {
@@ -38,40 +36,40 @@ model Service {
   title       String
   description String
   price       Float
-  duration    Int      // Duration in minutes (e.g., 30, 60)
+  duration    Int
   category    String
   location    String
   imageUrl    String?
 
-  providerId  String
-  provider    User     @relation(fields: [providerId], references: [id], onDelete: Cascade)
+  providerId String
+  provider   User   @relation(fields: [providerId], references: [id], onDelete: Cascade)
 
   bookings       Booking[]
   availabilities Availability[]
-  createdAt      DateTime  @default(now())
+  createdAt      DateTime       @default(now())
 }
 
 model Availability {
   id        String  @id @default(cuid())
   serviceId String
   service   Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
-  dayOfWeek Int     // 0 = Sunday, 1 = Monday, etc.
-  startTime String  // e.g. "09:00"
-  endTime   String  // e.g. "17:00"
+  dayOfWeek Int
+  startTime String
+  endTime   String
 }
 
 model Booking {
   id        String        @id @default(cuid())
   date      DateTime
-  timeSlot  String        // e.g. "10:00 AM"
+  timeSlot  String
   status    BookingStatus @default(CONFIRMED)
   notes     String?
 
   customerId String
-  customer   User     @relation(fields: [customerId], references: [id])
+  customer   User   @relation(fields: [customerId], references: [id])
 
   serviceId String
-  service   Service  @relation(fields: [serviceId], references: [id])
+  service   Service @relation(fields: [serviceId], references: [id])
 
   createdAt DateTime @default(now())
 }
