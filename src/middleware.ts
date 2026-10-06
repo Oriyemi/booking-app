@@ -11,7 +11,10 @@ const isProtectedRoute = createRouteMatcher([
 ]);
 
 // Provider-only pages
-const isProviderRoute = createRouteMatcher(['/dashboard(.*)', '/provider(.*)']);
+const isProviderRoute = createRouteMatcher(['/provider(.*)']);
+
+// Customer-only pages
+const isCustomerRoute = createRouteMatcher(['/dashboard(.*)']);
 
 const isOnboardingRoute = createRouteMatcher(['/onboarding(.*)']);
 
@@ -32,13 +35,18 @@ export default clerkMiddleware(async (auth, req) => {
 
   // Already has a role: no need to see onboarding again
   if (role && isOnboardingRoute(req)) {
-    const home = role === 'provider' ? '/dashboard' : '/services';
+    const home = role === 'provider' ? '/provider' : '/services';
     return NextResponse.redirect(new URL(home, req.url));
   }
 
   // Customers can't open provider pages
   if (role === 'customer' && isProviderRoute(req)) {
     return NextResponse.redirect(new URL('/services', req.url));
+  }
+
+  // Providers can't open the customer dashboard
+  if (role === 'provider' && isCustomerRoute(req)) {
+    return NextResponse.redirect(new URL('/provider', req.url));
   }
 
   return NextResponse.next();
