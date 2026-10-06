@@ -1,9 +1,11 @@
-import { SignIn } from '@clerk/nextjs';
+import { SignIn } from "@clerk/nextjs";
+import AuthShell from "@/components/AuthShell";
+import { clerkAppearance } from "@/lib/clerk-appearance";
 
-export default function Page() {
+export default function LoginPage() {
   return (
-    <main style={{ display: 'flex', justifyContent: 'center', marginTop: '80px' }}>
-      <SignIn />
-    </main>
+    <AuthShell>
+      <SignIn appearance={clerkAppearance} />
+    </AuthShell>
   );
 }

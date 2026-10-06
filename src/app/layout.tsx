@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full antialiased">
       <body className="bg-[#800020]" suppressHydrationWarning>
-        <ClerkProvider>
+        <ClerkProvider appearance={{ cssLayerName: "clerk" }} >
           <SplashWrapper>{children}</SplashWrapper>
         </ClerkProvider>
       </body>

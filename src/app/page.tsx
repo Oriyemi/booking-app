@@ -70,8 +70,8 @@ export default function Home() {
         </div>
 
         <div className="mt-10 w-full space-y-3">
-          <Button href="/register">Get started</Button>
-          <Button href="/login" variant="outline">
+          <Button href="/sign-up">Get started</Button>
+          <Button href="/sign-in" variant="outline">
             I already have an account
           </Button>
         </div>
