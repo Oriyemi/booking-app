@@ -20,8 +20,8 @@ export const clerkAppearance = {
 cardBox: "w-full max-w-none rounded-3xl",
 card: "w-full rounded-3xl border border-brand/10 p-6 shadow-none sm:p-8 lg:p-10",
 
-    logoBox: "h-16 justify-center",
-    logoImage: "object-contain",
+   logoBox: { height: "4rem", justifyContent: "center" },
+logoImage: { height: "4rem", width: "auto", objectFit: "contain" },
     headerTitle: "text-2xl font-bold text-brand",
     headerSubtitle: "text-brand/70",
 

@@ -16,7 +16,19 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full antialiased">
       <body className="bg-[#800020]" suppressHydrationWarning>
-        <ClerkProvider appearance={{ cssLayerName: "clerk" }} >
+        <ClerkProvider
+          localization={{
+            signIn: {
+              start: { title: "Sign in", subtitle: "Welcome back!" },
+            },
+            signUp: {
+              start: {
+                title: "Create your account",
+                subtitle: "Book services in minutes",
+              },
+            },
+          }}
+        >
           <SplashWrapper>{children}</SplashWrapper>
         </ClerkProvider>
       </body>
