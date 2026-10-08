@@ -28,53 +28,55 @@ const features = [
   {
     icon: CalendarDays,
     title: "Never double-booked",
-    description: "Clients  only see times that are really free.",
+    description: "Clients only see times that are really free.",
   },
 ];
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen overflow-hidden bg-cream">
-      {/* soft background glow */}
-      <div className="pointer-events-none absolute -top-32 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-brand-light/20 blur-3xl" />
-      <div className="pointer-events-none absolute top-1/2 -right-24 h-72 w-72 rounded-full bg-accent/20 blur-3xl" />
-
+    <div className="min-h-screen bg-white">
       <Navbar />
 
-      <main className="relative mx-auto flex max-w-xl flex-col items-center px-6 py-14 text-center">
+      <main className="mx-auto flex w-full max-w-4xl flex-col items-center px-4 py-10 text-center sm:px-6 sm:py-14 lg:py-20">
         <div className="relative">
-          <div className="flex h-20 w-20 items-center justify-center rounded-3xl bg-linear-to-br from-brand to-brand-light text-white shadow-lg shadow-brand/30">
-            <CalendarCheck size={40} />
+          <div className="flex h-16 w-16 items-center justify-center rounded-3xl bg-linear-to-br from-brand to-brand-light text-white shadow-lg shadow-brand/30 sm:h-20 sm:w-20">
+            <CalendarCheck className="h-8 w-8 sm:h-10 sm:w-10" />
           </div>
-          <span className="absolute -top-1 -right-2 h-5 w-5 rounded-full bg-accent ring-2 ring-cream" />
+          <span className="absolute -top-1 -right-2 h-5 w-5 rounded-full bg-accent ring-2 ring-white" />
         </div>
 
-        <h1 className="mt-8 text-3xl font-bold tracking-tight text-brand sm:text-4xl">
+        <h1 className="mt-8 text-3xl font-bold tracking-tight text-brand sm:text-4xl lg:text-5xl">
           Take bookings online, in minutes
         </h1>
-        <p className="mt-4 text-lg text-brand/70 font-light">
+        <p className="mt-4 max-w-2xl text-base font-light text-brand/70 sm:text-lg">
           Create your booking page, share one link, and let clients book and
           pay a deposit. No more back-and-forth messages.
         </p>
 
-        <div className="mt-6 flex flex-wrap justify-center gap-3">
+        <div className="mt-6 flex flex-wrap justify-center gap-2 sm:gap-3">
           {categories.map((c) => (
             <CategoryChip key={c} label={c} />
           ))}
         </div>
 
-        <div className="mt-10 w-full space-y-4 text-left">
+        <div className="mt-10 grid w-full gap-4 text-left sm:mt-12 lg:grid-cols-3">
           {features.map((f) => (
             <FeatureCard key={f.title} {...f} />
           ))}
         </div>
 
-        <div className="mt-10 w-full space-y-3">
-          <Button href="/sign-up">Get started</Button>
-          <Button href="/sign-in" variant="outline">
-            I already have an account
-          </Button>
-        </div>
+        <div className="mt-10 flex w-full flex-col items-center gap-4">
+  <div className="w-full sm:w-72 rounded-full">
+    <Button href="/sign-up">Get started</Button>
+  </div>
+
+  <p className="text-sm text-brand/70">
+    Already have an account?{" "}
+    <Link href="/sign-in" className="font-medium text-brand-light hover:underline">
+      Sign in
+    </Link>
+  </p>
+</div>
 
         <Link
           href="/services"

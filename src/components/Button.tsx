@@ -25,7 +25,7 @@ export default function Button({
   return (
     <Link
       href={href}
-      className={`block w-full rounded-2xl py-4 text-center font-semibold ${styles}`}
+      className={`block w-full rounded-full py-4 text-center font-semibold ${styles}`}
     >
       {children}
     </Link>

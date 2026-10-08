@@ -2,25 +2,21 @@
 
 import { auth, clerkClient } from "@clerk/nextjs/server";
 
-export async function completeOnboarding(role: "customer" | "provider") {
-  const { userId, sessionClaims } = await auth();
+export async function completeOnboarding(role: "CUSTOMER" | "PROVIDER") {
+  const { userId } = await auth();
   if (!userId) return { error: "Not signed in" };
 
-  // Only allow valid roles, and don't let people switch once set
-  if (role !== "customer" && role !== "provider") {
+  if (role !== "CUSTOMER" && role !== "PROVIDER") {
     return { error: "Invalid role" };
-  }
-  if (sessionClaims?.metadata?.role) {
-    return { error: "Role already set" };
   }
 
   try {
     const client = await clerkClient();
     await client.users.updateUserMetadata(userId, {
-      publicMetadata: { role },
+      publicMetadata: { onboardingComplete: true, role },
     });
     return { success: true };
   } catch {
-    return { error: "Something went wrong. Please try again." };
+    return { error: "Could not save your choice. Try again." };
   }
 }
